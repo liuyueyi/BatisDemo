@@ -10,17 +10,9 @@
 
     <properties>
         <spring.version>4.0.6.RELEASE</spring.version>
-        <servlet.version>2.5</servlet.version>
-        <jstorm.version>2.1.0</jstorm.version>
-        <junit.version>4.11</junit.version>
-        <slf4j.version>1.7.10</slf4j.version>
-        <jetty.version>6.1.26.cloudera.2</jetty.version>
-        <lombok.version>1.16.6</lombok.version>
-        <passport.version>1.0.3-SNAPSHOT</passport.version>
+        <junit.version>4.12</junit.version>
         <mybatis.version>3.2.8</mybatis.version>
-        <velocity.version>1.7</velocity.version>
-        <commons-io.version>2.4</commons-io.version>
-        <commons-fileupload>1.2.1</commons-fileupload>
+        <mysql.version>5.1.35</mysql.version>
     </properties>
 
     <dependencies>
@@ -33,6 +25,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -53,15 +51,16 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.35</version>
+            <version>${mysql.version}</version>
         </dependency>
+
     </dependencies>
 
 </project>
