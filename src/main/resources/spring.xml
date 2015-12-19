@@ -28,10 +28,14 @@
         <property name="mapperLocations" value="classpath*:sql/*.xml" />
     </bean>
 
-    <!--以下是所有的映射, 使用方法查看GoodsTest.java-->
+    <!-- 自动扫描dao -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.mogu.hui.dao" />
     </bean>
+
     <!-- 添加注解 -->
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+
+    <!-- 自动扫描装配bean，因此对UserService不用手动加一个bean，注意在类上加一个注解-->
+    <context:component-scan base-package="com.mogu.hui" />
 </beans>

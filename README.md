@@ -5,7 +5,7 @@ mybaits读取db的Demo工程
 
 版本介绍
 ===
-v1.0 :
+##v1.0 :
 >
 > 最原始的方法，写dao（sql查询接口），写domain（对应db中的数据结构），写mapper映射xml文件（具体的sql封装）
 >
@@ -52,7 +52,7 @@ v1.0 :
         </dependency>
 ```
 
-v1.1 :
+##v1.1 :
 >
 > 直接通过applicationContext来初始化dao接口，调用对应的方法来实现db操作
 >
@@ -138,7 +138,7 @@ test.java
 
 ### v1.1.2
 
-相比1.1.1而言，每次新增一个dao接口，需要重新指定mapper，新增一个bean，比较麻烦，改成自动扫描包的形式
+相比1.1.1而言，每次新增一个dao接口，需要重新指定mapper，新增一个bean，比较麻烦，改成自动扫描包的形式；加上自动扫描装配bean的配置
 
 主要是针对`spring.xml` 文件中的配置进行修改，如下：
 
@@ -156,4 +156,6 @@ test.java
     </bean>
     <!-- 添加注解支持 -->
     <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
+    <!-- 自动扫描装配bean，因此对UserService不用手动加一个bean，注意在类上加一个注解-->
+    <context:component-scan base-package="com.mogu.hui" />
 ```
