@@ -24,16 +24,14 @@
         <property name="dataSource" ref="dataSource"/>
         <!--configLocation属性指定mybatis的核心配置文件-->
         <property name="configLocation" value="classpath:mybatis.xml"/>
-    </bean>
-    <bean id="userDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <property name="mapperInterface" value="com.mogu.hui.dao.UserDao" />
+        <!-- 指定mapper文件 -->
+        <property name="mapperLocations" value="classpath*:sql/*.xml" />
     </bean>
 
     <!--以下是所有的映射, 使用方法查看GoodsTest.java-->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.mogujie.hulk.web.model.dao" />-->
-    <!--</bean>-->
-
-    <!--<bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.mogu.hui.dao" />
+    </bean>
+    <!-- 添加注解 -->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor" />
 </beans>
