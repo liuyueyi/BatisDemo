@@ -159,3 +159,32 @@ test.java
     <!-- 自动扫描装配bean，因此对UserService不用手动加一个bean，注意在类上加一个注解-->
     <context:component-scan base-package="com.mogu.hui" />
 ```
+
+说明
+===
+1、在通过mybatis写入db中文数据时，发现乱码，解决方案：
+
+  - table设置编码方式为 utf8(utf8mb4编码可以很好的存入emoj标签), 建表的时候指定
+
+  ```
+    CREATE TABLE `config` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `team` varchar(255) NOT NULL DEFAULT '',
+  `owner` varchar(255) NOT NULL DEFAULT '',
+  `isDisable` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否隐藏 0：不隐藏，1：隐藏',
+  `created` int(11) unsigned NOT NULL DEFAULT '0',
+  `updated` int(11) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `idx_isDisable` (`topology`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='拓扑配置信息';
+  ```
+
+  - 在jdbc的配置中加上
+
+  ```
+  driver=com.mysql.jdbc.Driver
+  # 下面加上后缀，防止插入DB中文乱码，当然前提是需要将db的编码设置为utf8
+  url=jdbc:mysql://127.0.0.1:3306/samp_db?useUnicode=true&characterEncoding=utf8
+  username=root
+  password=
+  ```
